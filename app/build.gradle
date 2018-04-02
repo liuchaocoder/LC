@@ -37,9 +37,7 @@ android {
         sourceCompatibility 1.8
     }
 }
-kapt {
-    generateStubs = true
-}
+
 dependencies {
     // Support libraries
     implementation deps.support.app_compat
@@ -50,9 +48,9 @@ dependencies {
     // Architecture components
     implementation deps.lifecycle.runtime
     implementation deps.lifecycle.extensions
-    annotationProcessor deps.lifecycle.compiler
+    kapt deps.lifecycle.compiler
     implementation deps.room.runtime
-    annotationProcessor deps.room.compiler
+    kapt deps.room.compiler
 
     // Android Testing Support Library's runner and rules
     androidTestImplementation deps.atsl.runner
@@ -71,5 +69,8 @@ dependencies {
     androidTestImplementation deps.support.app_compat
     androidTestImplementation deps.support.design
 
-    kapt "com.android.databinding:compiler:3.0.1"
+    // Kotlin
+    implementation deps.kotlin.stdlib
+    //dataBinding
+    kapt deps.databing
 }
