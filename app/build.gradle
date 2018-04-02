@@ -37,7 +37,9 @@ android {
         sourceCompatibility 1.8
     }
 }
-
+kapt {
+    generateStubs = true
+}
 dependencies {
     // Support libraries
     implementation deps.support.app_compat
@@ -68,4 +70,6 @@ dependencies {
     androidTestImplementation deps.support.v4
     androidTestImplementation deps.support.app_compat
     androidTestImplementation deps.support.design
+
+    kapt "com.android.databinding:compiler:3.0.1"
 }
