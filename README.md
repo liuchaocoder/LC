@@ -1,0 +1,1 @@
+综合使用Kotlin android architecture components dagger2 databinding arouter等主流技术，一步步实现成熟的项目框架
