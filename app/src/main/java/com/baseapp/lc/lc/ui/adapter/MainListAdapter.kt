@@ -27,10 +27,10 @@ import java.nio.file.Paths
  */
 class MainListAdapter :RecyclerView.Adapter<MainListAdapter.MainListViewHolder>{
     lateinit var mainLists:List<MainListModel>
-    lateinit var mainListClickListener: (MainListModel) -> Unit
+    lateinit var mainListClickListener: MainListClickListener
 
-    constructor(listener: (MainListModel) -> Unit){
-        this.mainListClickListener = listener
+    constructor(mainListClickListener: MainListClickListener){
+        this.mainListClickListener = mainListClickListener
     }
 
     fun setMainList(mainLists :List<MainListModel>){
@@ -46,8 +46,7 @@ class MainListAdapter :RecyclerView.Adapter<MainListAdapter.MainListViewHolder>{
     override fun onBindViewHolder(holder: MainListViewHolder?, position: Int) {
         holder!!.binding!!.mainListModel=mainLists.get(position)
         holder.binding?.root?.setOnClickListener{
-            mainListClickListener.invoke(mainLists.get(position)
-                    )
+           mainListClickListener.onClick(mainLists.get(position))
         }
 
     }

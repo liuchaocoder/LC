@@ -25,23 +25,15 @@ import java.util.*
 class MainListFragment : Fragment() {
     lateinit var mainListAdapter: MainListAdapter
     lateinit var mBinding: MainListFragmentBinding
-
-    val mProductClickCallback = object: MainListClickListener {
+    /*采用对象表达式来创建接口对象，即匿名内部类的实例。 */
+    val mMainListClickCallback = object: MainListClickListener {
         override fun onClick(mainListModel: MainListModel){
-
+            Log.d(TAG,"匿名内部类形式增加监听")
         }
     }
-
-
-
-
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mBinding = DataBindingUtil.inflate(inflater,R.layout.main_list_fragment,container,false)
-
-        mainListAdapter = MainListAdapter{ it ->
-
-            Log.d(TAG,"Lambda表达式形式增加监听")
-        }
+        mainListAdapter = MainListAdapter(mMainListClickCallback)
         mBinding.productsList.adapter =mainListAdapter
         return mBinding.root
     }
