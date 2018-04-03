@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.baseapp.lc.lc.R
 import com.baseapp.lc.lc.databinding.MainListItemBinding
 import com.baseapp.lc.lc.model.MainListModel
+import com.baseapp.lc.lc.ui.MainListClickListener
 import java.io.File
 import java.lang.IllegalArgumentException
 import java.lang.IllegalStateException
@@ -26,9 +27,11 @@ import java.nio.file.Paths
  */
 class MainListAdapter :RecyclerView.Adapter<MainListAdapter.MainListViewHolder>{
     lateinit var mainLists:List<MainListModel>
+    lateinit var mainListClickListener: (MainListModel) -> Unit
 
-    constructor() : super()
-
+    constructor(listener: (MainListModel) -> Unit){
+        this.mainListClickListener = listener
+    }
 
     fun setMainList(mainLists :List<MainListModel>){
         this.mainLists =mainLists
@@ -42,6 +45,11 @@ class MainListAdapter :RecyclerView.Adapter<MainListAdapter.MainListViewHolder>{
 
     override fun onBindViewHolder(holder: MainListViewHolder?, position: Int) {
         holder!!.binding!!.mainListModel=mainLists.get(position)
+        holder.binding?.root?.setOnClickListener{
+            mainListClickListener.invoke(mainLists.get(position)
+                    )
+        }
+
     }
 
     override fun getItemCount(): Int {
