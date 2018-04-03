@@ -28,7 +28,9 @@ class MainListFragment : Fragment() {
     /*采用对象表达式来创建接口对象，即匿名内部类的实例。 */
     val mMainListClickCallback = object: MainListClickListener {
         override fun onClick(mainListModel: MainListModel){
-            Log.d(TAG,"匿名内部类形式增加监听")
+            if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+                Log.d(TAG,"lifecycle生命周期判断+匿名内部类形式增加监听")
+            }
         }
     }
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
