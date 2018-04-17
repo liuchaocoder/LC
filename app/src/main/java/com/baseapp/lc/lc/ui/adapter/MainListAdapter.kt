@@ -26,11 +26,13 @@ import java.nio.file.Paths
  * @version
  */
 class MainListAdapter :RecyclerView.Adapter<MainListAdapter.MainListViewHolder>{
+
     lateinit var mainLists:List<MainListModel>
     lateinit var mainListClickListener: MainListClickListener
 
     constructor(mainListClickListener: MainListClickListener){
         this.mainListClickListener = mainListClickListener
+        mainLists =ArrayList()
     }
 
     fun setMainList(mainLists :List<MainListModel>){
@@ -44,15 +46,15 @@ class MainListAdapter :RecyclerView.Adapter<MainListAdapter.MainListViewHolder>{
     }
 
     override fun onBindViewHolder(holder: MainListViewHolder?, position: Int) {
-        holder!!.binding!!.mainListModel=mainLists.get(position)
-        holder.binding?.root?.setOnClickListener{
+        holder?.binding?.mainListModel=mainLists.get(position)
+        holder?.binding?.root?.setOnClickListener{
            mainListClickListener.onClick(mainLists.get(position))
         }
 
     }
 
     override fun getItemCount(): Int {
-        return mainLists.size
+        return mainLists?.size
     }
 
     //    static class ProductViewHolder extends RecyclerView.ViewHolder {
